@@ -1,0 +1,1 @@
+lib Ditto: pip install --no-cache-dir tensorflow-gpu
