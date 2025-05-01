@@ -3,9 +3,10 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import load_img, img_to_array
 import numpy as np
 import tensorflow as tf
+from PIL import Image
 
 # Load the model
-model = load_model('model.keras')
+model = load_model('brain_tumor_resnet50v2_model.keras')
 
 # Class names based on your dataset
 class_names = ['glioma', 'meningioma', 'notumor', 'pituitary']
@@ -18,15 +19,16 @@ uploaded_file = st.file_uploader("Choose an MRI image...", type=["jpg", "png", "
 
 if uploaded_file is not None:
     # Load and process image
-    image = load_img(uploaded_file, target_size=(150, 150), color_mode='rgb')
-    st.image(image, caption='Uploaded Image', use_container_width=True)
+    image = Image.open(uploaded_file)
+    st.image(image, caption='Uploaded Image', width=700)  # Use width instead of use_container_width
     st.write("")
     st.write("Classifying...")
 
-    # Convert to array and normalize
+    # Resize and convert to array
+    image = image.resize((150, 150))  # Resize to match model input
     img_array = img_to_array(image)
-    img_array = tf.expand_dims(img_array, 0)
-    img_array = img_array / 255.0
+    img_array = tf.expand_dims(img_array, 0)  # Add batch dimension
+    img_array = img_array / 255.0  # Normalize
 
     # Make prediction
     predictions = model.predict(img_array)
