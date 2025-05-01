@@ -23,6 +23,8 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
 ```bash
+git clone https://github.com/Umang-saxena/Brain-tumour-detection.git
+cd Brain-tumour-detection
 ```
 
 2. Install the required packages:
