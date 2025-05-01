@@ -14,6 +14,12 @@ class_names = ['glioma', 'meningioma', 'notumor', 'pituitary']
 # App title
 st.title("Brain Tumor Classification")
 
+# Description with hyperlink
+st.markdown("""
+This application uses deep learning to classify brain tumor MRI images into four categories: glioma, meningioma, pituitary tumor, or no tumor. 
+The model is trained on a dataset of brain MRI scans. For testing of model,you can get dataset from [here](https://drive.google.com/drive/folders/1dea7C2JeDPMhkQRW1w36KXehFwVpZrSP?usp=sharing).
+""")
+
 # Upload image
 uploaded_file = st.file_uploader("Choose an MRI image...", type=["jpg", "png", "jpeg"])
 
